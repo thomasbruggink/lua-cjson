@@ -1,6 +1,6 @@
-= Lua CJSON 2.1devel Manual =
+= Lua CJSON 2.1.0 Manual =
 Mark Pulford <mark@kyne.com.au>
-:revdate: August 2016
+:revdate: 1st March 2012
 
 Overview
 --------
@@ -20,7 +20,7 @@ The Lua CJSON module provides JSON support for Lua.
 Lua CJSON is covered by the MIT license. Review the file +LICENSE+ for
 details.
 
-The current stable version of this software is available from the
+The latest version of this software is available from the
 http://www.kyne.com.au/%7Emark/software/lua-cjson.php[Lua CJSON website].
 
 Feel free to email me if you have any patches, suggestions, or comments.
@@ -29,8 +29,8 @@ Feel free to email me if you have any patches, suggestions, or comments.
 Installation
 ------------
 
-Lua CJSON requires either http://www.lua.org[Lua] 5.1, Lua 5.2, Lua 5.3,
-or http://www.luajit.org[LuaJIT] to build.
+Lua CJSON requires either http://www.lua.org[Lua] 5.1, Lua 5.2, or
+http://www.luajit.org[LuaJIT] to build.
 
 The build method can be selected from 4 options:
 
@@ -102,7 +102,7 @@ has been installed.
 Build and install the module via RPM:
 
 [source,sh]
-rpmbuild -tb lua-cjson-2.1devel.tar.gz
+rpmbuild -tb lua-cjson-2.1.0.tar.gz
 rpm -Uvh $LUA_CJSON_RPM
 
 
@@ -117,7 +117,7 @@ First, extract the Lua CJSON source package.
 Next, install the module:
 
 [source,sh]
-cd lua-cjson-2.1devel
+cd lua-cjson-2.1.0
 luarocks make
 
 [NOTE]
@@ -203,8 +203,8 @@ Import Lua CJSON via the Lua +require+ function. Lua CJSON does not
 register a global module table.
 
 The +cjson+ module will throw an error during JSON conversion if any
-invalid data is encountered. Refer to <<encode,+cjson.encode+>> and
-<<decode,+cjson.decode+>> for details.
+invalid data is encountered. Refer to <<cjson_encode,+cjson.encode+>>
+and <<cjson_decode,+cjson.decode+>> for details.
 
 The +cjson.safe+ module behaves identically to the +cjson+ module,
 except when errors are encountered during JSON conversion. On error, the
@@ -238,7 +238,6 @@ workaround if required. Lua CJSON should be reinitialised via
 different locale per thread is not supported.
 
 
-[[decode]]
 decode
 ~~~~~~
 
@@ -291,7 +290,7 @@ Lua CJSON may generate an error when trying to decode numbers not
 supported by the JSON specification. _Invalid numbers_ are defined as:
 
 - infinity
-- NaN
+- not-a-number (NaN)
 - hexadecimal
 
 Available settings:
@@ -439,13 +438,12 @@ Lua CJSON may generate an error when encoding floating point numbers not
 supported by the JSON specification (_invalid numbers_):
 
 - infinity
-- NaN
+- not-a-number (NaN)
 
 Available settings:
 
-+true+:: Allow _invalid numbers_ to be encoded using the Javascript
-  compatible values +NaN+ and +Infinity+. This will generate
-  non-standard JSON, but these values are supported by some libraries.
++true+:: Allow _invalid numbers_ to be encoded. This will generate
+  non-standard JSON, but this output is supported by some libraries.
 +"null"+:: Encode _invalid numbers_ as a JSON +null+ value. This allows
   infinity and NaN to be encoded into valid JSON.
 +false+:: Throw an error when attempting to encode _invalid numbers_.
@@ -592,7 +590,7 @@ The name of the Lua CJSON module (+"cjson"+).
 _VERSION
 ~~~~~~~~
 
-The version number of the Lua CJSON module (+"2.1devel"+).
+The version number of the Lua CJSON module (+"2.1.0"+).
 
 
 null

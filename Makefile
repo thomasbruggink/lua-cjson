@@ -11,7 +11,7 @@
 ##                          multi-threaded application. Requries _pthreads_.
 
 ##### Build defaults #####
-LUA_VERSION =       5.3
+LUA_VERSION =       5.1
 TARGET =            cjson.so
 PREFIX =            /usr/local
 #CFLAGS =            -g -Wall -pedantic -fno-inline
@@ -40,8 +40,7 @@ LUA_BIN_DIR =       $(PREFIX)/bin
 #CJSON_LDFLAGS =     -bundle -undefined dynamic_lookup
 
 ## Solaris
-#PREFIX =            /home/user/opt
-#CC =                gcc
+#CC           =      gcc
 #CJSON_CFLAGS =      -fpic -DUSE_INTERNAL_ISINF
 
 ## Windows (MinGW)
@@ -84,12 +83,12 @@ OBJS =              lua_cjson.o strbuf.o $(FPCONV_OBJS)
 
 .PHONY: all clean install install-extra doc
 
-.SUFFIXES: .html .adoc
+.SUFFIXES: .html .txt
 
 .c.o:
 	$(CC) -c $(CFLAGS) $(CPPFLAGS) $(BUILD_CFLAGS) -o $@ $<
 
-.adoc.html:
+.txt.html:
 	$(ASCIIDOC) -n -a toc $<
 
 all: $(TARGET)
